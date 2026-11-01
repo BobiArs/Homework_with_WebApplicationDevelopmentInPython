@@ -1,0 +1,548 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>{%if title%}{{ title }} {% else %} Default Page {%endif%}</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h2>Python Framework - Flask</h2>-->
+<!--    <ul>-->
+<!--        {% for el in menu %}-->
+<!--        <li>{{el}}</li>-->
+<!--        {%endfor%}-->
+<!--    </ul>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }}{% else %}FruitMarket{% endif %}</title>
+
+    <style>
+        :root {
+            --primary: #0e8345;
+            --primary-hover: #0a6635;
+            --bg-light: #f4f6f8;
+            --text-dark: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --star-color: #fbbf24;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* HEADER */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--primary);
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 320px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: #f9fafb;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -6px;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            background: linear-gradient(135deg, #e6f4ea 0%, #cce7d0 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 50px;
+            margin-bottom: 30px;
+        }
+
+        .hero-content {
+            max-width: 480px;
+        }
+
+        .hero-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #064e26;
+            margin-bottom: 12px;
+        }
+
+        .hero-desc {
+            color: #4b5563;
+            font-size: 14px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-placeholder {
+            font-size: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 260px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: var(--radius);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 24px;
+        }
+
+        .sidebar {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            height: fit-content;
+        }
+
+        .sidebar-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .category-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .category-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .category-item:hover, .category-item.active {
+            background-color: #f0fdf4;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .category-item div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .count-badge {
+            background: #f3f4f6;
+            color: var(--text-muted);
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        .filter-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            margin-top: 16px;
+        }
+
+        .filter-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .range-slider {
+            width: 100%;
+            margin-bottom: 8px;
+            accent-color: var(--primary);
+        }
+
+        .price-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .select-sort {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            background: #fff;
+        }
+
+        /* PRODUCTS AREA */
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .products-title-area h2 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .products-count {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .view-options {
+            display: flex;
+            gap: 6px;
+        }
+
+        .view-btn {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .view-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .product-icon-preview {
+            font-size: 64px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            width: 100%;
+        }
+
+        .product-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .product-price span {
+            font-weight: 400;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        .stars {
+            color: var(--star-color);
+        }
+
+        .btn-add-cart {
+            margin-top: auto;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">🍏 FruitMarket</a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Головна</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">Про нас</a></li>
+                    <li><a href="#">Доставка</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </nav>
+            <div class="search-bar">
+                <label>
+                    <input type="text" placeholder="Пошук фруктів 🔍">
+                </label>
+            </div>
+            <div class="user-actions">
+                <button class="icon-btn">👤</button>
+                <button class="icon-btn">
+                    🛒
+                    <span class="badge">3</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+
+        <section class="hero-banner">
+            <div class="hero-content">
+                <div class="hero-subtitle">Свіжі фрукти — для здорового життя</div>
+                <h1 class="hero-title">Натуральні фрукти<br>з усього світу</h1>
+                <p class="hero-desc">Соковиті, смачні, корисні — обирайте свої улюблені фрукти в нашому магазині!</p>
+                <a href="#" class="btn-primary">Перейти до каталогу ➔</a>
+            </div>
+            <div class="hero-placeholder">🧺</div>
+        </section>
+
+        <div class="content-grid">
+
+            <aside class="sidebar">
+                <div class="sidebar-title">📊 Категорії</div>
+
+                <ul class="category-list">
+                    {% for cat in categories %}
+                    <li class="category-item {% if cat.active %}active{% endif %}">
+                        <div>
+                            <span>{{ cat.icon }}</span>
+                            {{ cat.name }}
+                        </div>
+                        <span class="count-badge">{{ cat.count }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="filter-section">
+                    <div class="filter-title">Ціна</div>
+                    <label>
+                        <input type="range" class="range-slider" min="20" max="350" value="350">
+                    </label>
+                    <div class="price-labels">
+                        <span>20 грн</span>
+                        <span>350 грн</span>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">Наявність</div>
+                    <label class="checkbox-label">
+                        <input type="checkbox" checked> В наявності
+                    </label>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">Сортувати за</div>
+                    <label>
+                        <select class="select-sort">
+                            <option>Популярністю</option>
+                            <option>Ціною: від дешевшої</option>
+                            <option>Ціною: від дорожчої</option>
+                        </select>
+                    </label>
+                </div>
+            </aside>
+
+            <section class="products-area">
+                <div class="products-header">
+                    <div class="products-title-area">
+                        <h2>Фрукти</h2>
+                        <div class="products-count">Знайдено {{ products|length }} товарів</div>
+                    </div>
+                    <div class="view-options">
+                        <button class="view-btn active">⊞</button>
+                        <button class="view-btn">☰</button>
+                    </div>
+                </div>
+
+                <div class="products-grid">
+                    {% for item in products %}
+                    <div class="product-card">
+                        <!-- Звертаємося до ендпоінту product_detail з передачею prod_id -->
+                        <a href="{{ url_for('product_detail', prod_id=item.id) }}" style="text-decoration: none; color: inherit;">
+                            <div class="product-icon-preview">{{ item.image }}</div>
+                            <div class="product-name">{{ item.title }}</div>
+                        </a>
+                        <div class="product-price">{{ item.price }} грн <span>/ кг</span></div>
+                        <div class="product-rating">
+                            <span class="stars">★★★★★</span> {{ item.rating }}
+                        </div>
+                        <button class="btn-add-cart">🛒 Додати в кошик</button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
