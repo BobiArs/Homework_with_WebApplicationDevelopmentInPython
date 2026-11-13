@@ -38,7 +38,6 @@ def home(request):
 # query params       rozetka.ua?title=tv&start_price=3400&end_price=10000
 
 def get_card(request, id):
-    # Одразу задаємо значення за замовчуванням через f-рядок
     title = request.GET.get('title', f'Card {id}')
 
     if 0 < id <= len(cards):

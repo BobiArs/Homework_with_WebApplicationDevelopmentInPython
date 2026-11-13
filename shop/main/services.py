@@ -9,7 +9,6 @@ class UserService:
         if User.objects.filter(email=email).exists():
             raise ValueError("Користувач із таким email уже існує.")
 
-        # Генеруємо унікальне ім'я файлу для аватара (щоб уникнути перезапису однакових назв)
         if avatar:
             ext = os.path.splitext(avatar.name)[1]
             avatar.name = f"{uuid.uuid4()}{ext}"
