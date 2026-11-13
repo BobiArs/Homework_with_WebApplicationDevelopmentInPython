@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Моє Резюме{% endblock %}</title>
+    <link rel="icon" href="data:,">
+
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-light">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Мій Проєкт</a>
+            <span class="navbar-text ms-auto text-white">Персональне CV</span>
+        </div>
+    </nav>
+
+    <!-- Основний контент -->
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Футер -->
+    <footer class="text-center py-4 text-muted bg-white border-top mt-5">
+        <div class="container">
+            <p class="mb-0">© 2026 Персональне резюме. Зроблено на Django & Bootstrap.</p>
+        </div>
+    </footer>
+
+    <script src="https://cloudflare.com"></script>
+</body>
+</html>

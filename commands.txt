@@ -1,0 +1,11 @@
+# pass: bobibobibobi1945
+
+1. pip install django
+2. django-admin startproject shop
+3. pip freeze > requirements.txt
+4. python manage.py migrate
+5. py .\manage.py createsuperuser
+6. py .\manage.py runserver
+7. .\manage.py startapp main
+8. python manage.py makemigrations
+9. python manage.py migrate

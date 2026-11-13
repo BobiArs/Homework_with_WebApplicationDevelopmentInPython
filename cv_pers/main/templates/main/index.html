@@ -1,0 +1,79 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Резюме{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+
+    <div class="col-12 col-md-4">
+        <div class="card shadow-sm border-0">
+            <img src="https://unsplash.com" class="card-img-top" alt="Фото профілю">
+            <div class="card-body">
+                <h3 class="card-title h4 mb-1">Ім'я Прізвище</h3>
+                <p class="text-muted mb-3">Місто проживання: Вінниця</p>
+
+                <hr>
+
+                <h5>Контакти</h5>
+                <p class="mb-1"><strong>Email:</strong> your.email@example.com</p>
+                <p class="mb-0"><strong>Телефон:</strong> +380 XX XXX XX XX</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-8">
+
+        <!-- Про себе -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <h4 class="card-title text-primary border-bottom pb-2">Про себе</h4>
+                <p class="card-text">Я розвиваюся у напрямку Full-Stack розробки. Окрім створення веб-сервісів та мобільних додатків, маю великий інтерес до геймдеву та 3D-графіки (Unreal Engine, Unity).</p>
+                <p class="card-text"><strong>Особисті якості:</strong> Технічна допитливість, швидка адаптація до різних технологічних стеків, системне мислення та наполегливість.</p>
+                <p class="card-text"><strong>Професійна мета:</strong> Поєднувати сильні сторони Full-Stack розробки та інтерактивних 3D-технологій, створюючи складні й цікаві програмні продукти.</p>
+            </div>
+        </div>
+
+        <!-- Освіта -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <h4 class="card-title text-primary border-bottom pb-2">Освіта</h4>
+                <div class="mb-2">
+                    <h5 class="h6 mb-0">Назва твого навчального закладу</h5>
+                    <p class="text-muted small mb-1">Спеціальність: Комп'ютерні науки / Інженерія програмного забезпечення</p>
+                    <p class="mb-0 text-secondary small">Роки навчання: 2022 — 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Навички -->
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <h4 class="card-title text-primary border-bottom pb-2">Навички</h4>
+                <p class="mb-2"><strong>Мови програмування та розмітки:</strong> Python, C++, C#, JavaScript (React Native), HTML, CSS</p>
+                <p class="mb-2"><strong>Рушії та програми:</strong> Unreal Engine, Unity, VS Code, Visual Studio, Git, GitHub</p>
+                <p class="mb-0"><strong>Мови:</strong> Українська (вільно), Російська (вільно), Англійська (базовий рівень, у процесі вивчення)</p>
+            </div>
+        </div>
+
+        <!-- Досвід роботи або навчальні проєкти -->
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h4 class="card-title text-primary border-bottom pb-2">Навчальні проєкти</h4>
+
+                <div class="mb-3">
+                    <h5 class="h6 mb-1">Персональне веб-резюме (CV)</h5>
+                    <p class="mb-1 text-muted small"><strong>Використані технології:</strong> Python, Django, HTML, CSS, Bootstrap 5</p>
+                    <p class="mb-0"><strong>Опис результату:</strong> Створено адаптивну веб-сторінку резюме з використанням успадкування шаблонів Django та компонентів Bootstrap.</p>
+                </div>
+
+                <div>
+                    <h5 class="h6 mb-1">Інтерактивна форма реєстрації</h5>
+                    <p class="mb-1 text-muted small"><strong>Використані технології:</strong> Django, JavaScript (Fetch API), JSON</p>
+                    <p class="mb-0"><strong>Опис результату:</strong> Реалізовано асинхронне відправлення POST-запиту на сервер без перезавантаження сторінки.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
