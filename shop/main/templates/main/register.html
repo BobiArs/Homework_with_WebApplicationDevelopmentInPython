@@ -2,40 +2,31 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4" style="max-width: 500px;">
-    <h2>Реєстрація</h2>
+<h2>Реєстрація</h2>
 
-    <div id="registerMessage"></div>
+<div id="registerMessage"></div>
 
-    <form id="registerForm">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label class="form-label">Ім'я</label>
-            <input type="text" name="first_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Прізвище</label>
-            <input type="text" name="last_name" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Дата народження</label>
-            <input type="date" name="birth_date" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Пароль</label>
-            <input type="password" name="password" class="form-control" required>
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Аватар</label>
-            <input type="file" name="avatar" accept="image/*" class="form-control">
-        </div>
-        <button type="submit" class="btn btn-primary">Зареєструватися</button>
-    </form>
-</div>
+<form id="registerForm" style="display: flex; flex-direction: column; gap: 12px; max-width: 350px;">
+    {% csrf_token %}
+
+    <input type="text" name="first_name" class="form-ghost" placeholder="Ім'я *" required>
+    <input type="text" name="last_name" class="form-ghost" placeholder="Прізвище *" required>
+
+    <div>
+        <small>Дата народження:</small><br>
+        <input type="date" name="birth_date" class="form-ghost" style="width: 100%;">
+    </div>
+
+    <input type="email" name="email" class="form-ghost" placeholder="Email *" required>
+    <input type="password" name="password" class="form-ghost" placeholder="Пароль *" required>
+
+    <div>
+        <small>Фото профілю (аватар):</small><br>
+        <input type="file" name="avatar" accept="image/*" class="form-ghost" style="width: 100%;">
+    </div>
+
+    <button type="submit">Зареєструватися</button>
+</form>
 
 <script src="{% static 'main/js/register_form.js' %}"></script>
 {% endblock %}
