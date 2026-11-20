@@ -1,12 +1,16 @@
 import datetime as dt
+from django.db.models import Model
+from .forms import CardForm
 from .services import UserService
 from django.core.checks import registry
 from django.db import models
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import json
 
-from .models import Card
+PROJECTS_CARD = []
+
+from .models import Card, Tag
 
 cards = [
         {
@@ -110,3 +114,35 @@ def register(request):
             return JsonResponse({'error': 'Помилка при реєстрації'}, status=500)
 
     return render(request, 'main/register.html')
+
+def test_create(request):
+    card = Card(
+        title='test title',
+        description='test description',
+        image='test image',
+        created_at=dt.datetime.now(),
+    )
+    card.save()
+    tag = Tag.objects.create(
+        title=title,
+    )
+
+    return HttpResponse("ok")
+
+def index(request):
+    return render(request, 'main/index.html',
+      {'cards': cards}
+    )
+
+def add_card(request):
+    if request.method == 'POST':
+        form = CardForm(request.POST)
+
+        if form.is_valid():
+            cards.append(form.cleaned_data)
+
+            return redirect('index')
+    else:
+        form = CardForm()
+
+    return render(request, 'main/add_cards.html', {'form': form})

@@ -1,18 +1,41 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+
 {% block title %}
 Main Page
 {% endblock %}
 
-
 {%block content%}
   <!-- Заголовок -->
-        <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
-            <h1 class="display-5 fw-bold">Вітаємо на нашому сайті!</h1>
-            <p class="fs-5 text-muted">
-                Це головна сторінка сайта
-            </p>
-            <button class="btn btn-primary">
-                Детальніше
-            </button>
+    <div class="p-5 mb-4 bg-white rounded-3 shadow-sm">
+        <h1 class="display-5 fw-bold">Вітаємо на нашому сайті!</h1>
+        <p class="fs-5 text-muted">
+            Це головна сторінка сайта
+        </p>
+        <button class="btn btn-primary">
+            Детальніше
+        </button>
+    </div>
+
+{#    Пошук#}
+    <form action="{% url 'search' %}" class="mb-4 d-flex gap-2" style="max-width: 400px;">
+        <input type="search" name="title" class="form-control" placeholder="Search...">
+        <input type="submit" value="OK" class="btn btn-outline-dark">
+    </form>
+
+{#    Секція доданих карток#}
+    <div class="row g-4">
+        {% for card in cards %}
+        <div class="col-md-4">
+            <section class="card h-100" style="max-width: 320px">
+                <img src="{% static 'static/main/images/'|add:card.image %}" class="card-img-top" alt="{{ card.title }}">
+                <div class="card-body">
+                    <h4 class="card-title">{{ card.title }}</h4>
+                    <p class="card-text">{{ card.description }}</p>
+                    <a href="card/{{forloop.counter}}" class="btn btn-primary">Details</a>
+                </div>
+            </section>
         </div>
+        {% endfor %}
+    </div>
 {%endblock%}
