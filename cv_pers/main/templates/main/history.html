@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Історія міста{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0 p-4">
+    <h2 class="mb-3">Історія Вінниці</h2>
+    <p>Перша письмова згадка про Вінницю датується <strong>1363 роком</strong>, коли литовський князь Ольгерд збудував тут дерев'яну фортецю.</p>
+    <p>У 1640 році місто отримало Магдебурзьке право, а в період Української революції (1919–1920 рр.) тричі виконувало роль тимчасової столиці Української Народної Республіки.</p>
+
+    <div class="d-flex gap-2 mt-3">
+        <a href="{% url 'history_people' %}" class="btn btn-outline-primary btn-sm">Відомі мешканці →</a>
+        <a href="{% url 'history_photos' %}" class="btn btn-outline-primary btn-sm">Історичні фото →</a>
+    </div>
+</div>
+{% endblock %}

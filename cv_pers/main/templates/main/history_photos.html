@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block title %}Історичні фото{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0 p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">Історичні фотографії міста</h2>
+        <a href="{% url 'history' %}" class="btn btn-secondary btn-sm">← До історії</a>
+    </div>
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'main/images/tower.jpg' %}" class="card-img-top" alt="Водонапірна вежа">
+                <div class="card-body">
+                    <p class="small text-muted mb-0">Вінницька водонапірна вежа (1912 р.)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100">
+                <img src="{% static 'main/images/savoy.jpg' %}" class="card-img-top" alt="Готель Савой">
+                <div class="card-body">
+                    <p class="small text-muted mb-0">Готель «Савой» (1913 р.)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

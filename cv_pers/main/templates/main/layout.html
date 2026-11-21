@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Моє Резюме{% endblock %}</title>
+    <title>{% block title %}Вінниця та CV{% endblock %}</title>
     <link rel="icon" href="data:,">
 
+    <!-- Bootstrap 5 CSS через робочий Cloudflare CDN -->
     <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="bg-light">
@@ -13,8 +14,43 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Мій Проєкт</a>
-            <span class="navbar-text ms-auto text-white">Персональне CV</span>
+            <a class="navbar-brand" href="{% url 'index' %}">Вінниця & CV</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cityNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="cityNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'news' %}">Новини міста</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'management' %}">Голови міста</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'facts' %}">Факти про місто</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Історія
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'history' %}">Загальна історія</a></li>
+                            <li><a class="dropdown-item" href="{% url 'history_people' %}">Відомі мешканці</a></li>
+                            <li><a class="dropdown-item" href="{% url 'history_photos' %}">Історичні фото</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacts' %}">Міські служби</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -27,10 +63,11 @@
     <!-- Футер -->
     <footer class="text-center py-4 text-muted bg-white border-top mt-5">
         <div class="container">
-            <p class="mb-0">© 2026 Персональне резюме. Зроблено на Django & Bootstrap.</p>
+            <p class="mb-0">© 2026 Персональне резюме та портал міста Вінниця.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS -->
     <script src="https://cloudflare.com"></script>
 </body>
 </html>
