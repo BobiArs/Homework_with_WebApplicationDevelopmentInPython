@@ -9,3 +9,19 @@
 7. .\manage.py startapp main
 8. python manage.py makemigrations
 9. python manage.py migrate
+
+---------------------------------------------
+
+GIT
+
+# I
+git init
+git remote add origin https://github.com/BobiArs/Homework_with_WebApplicationDevelopmentInPython.git
+git checkout -b django_hw
+
+---
+
+# II
+git add .
+git commit -m "Push HomeWork X"
+git push -u origin django_hw
